@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Kafein</string>
+    <string name="search_hint">Cari Cafe</string>
+</resources>
