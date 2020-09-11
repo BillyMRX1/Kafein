@@ -3,6 +3,7 @@ package com.putrasamudra.kafein;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.SearchManager;
@@ -12,6 +13,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.putrasamudra.kafein.adapter.CardViewCafeAdapter;
 import com.putrasamudra.kafein.model.Cafe;
 
 import java.util.ArrayList;
@@ -19,6 +24,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rvCafe;
     private ArrayList<Cafe> list = new ArrayList<>();
+    private CardViewCafeAdapter adapter;
+    private DatabaseReference mbase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +36,13 @@ public class MainActivity extends AppCompatActivity {
         AppCompatActivity activity = (AppCompatActivity) this;
         activity.setSupportActionBar(toolbar);
 
+        mbase = FirebaseDatabase.getInstance().getReference().child("Cafe");
         rvCafe = findViewById(R.id.rv_cafe);
-        rvCafe.setHasFixedSize(true);
-        //list.addAll(getListCafe());
-        //showRecyclerView();
+        rvCafe.setLayoutManager(new LinearLayoutManager(this));
+        FirebaseRecyclerOptions<Cafe> options = new FirebaseRecyclerOptions.Builder<Cafe>()
+                .setQuery(mbase, Cafe.class).build();
+        adapter = new CardViewCafeAdapter(options);
+        rvCafe.setAdapter(adapter);
     }
 
     @Override
@@ -60,12 +70,16 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
-/*
-    public ArrayList<Cafe> getListCafe() {
 
+    @Override protected void onStart()
+    {
+        super.onStart();
+        adapter.startListening();
     }
 
-    private void showRecyclerView(){
-
-    }*/
+    @Override protected void onStop()
+    {
+        super.onStop();
+        adapter.stopListening();
+    }
 }

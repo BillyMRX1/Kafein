@@ -12,16 +12,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.putrasamudra.kafein.R;
 import com.putrasamudra.kafein.model.Cafe;
 
 import java.util.ArrayList;
 
-public class CardViewCafeAdapter extends RecyclerView.Adapter<CardViewCafeAdapter.CardViewViewHolder> {
-    private ArrayList<Cafe> listCafe;
+public class CardViewCafeAdapter extends FirebaseRecyclerAdapter<Cafe, CardViewCafeAdapter.CardViewViewHolder> {
 
-    public CardViewCafeAdapter(ArrayList<Cafe> list) {
-        this.listCafe = list;
+    public CardViewCafeAdapter(@NonNull FirebaseRecyclerOptions<Cafe> options) {
+        super(options);
+    }
+
+    @Override
+    protected void onBindViewHolder(@NonNull CardViewCafeAdapter.CardViewViewHolder holder, int position, @NonNull Cafe model) {
+        Glide.with(holder.itemView.getContext())
+                .load(model.getPhoto())
+                .apply(new RequestOptions().override(350, 550))
+                .into(holder.cafePic);
+        holder.cafeName.setText(model.getName());
+        holder.cafeRating.setRating(model.getRating());
     }
 
     @NonNull
@@ -29,22 +40,6 @@ public class CardViewCafeAdapter extends RecyclerView.Adapter<CardViewCafeAdapte
     public CardViewCafeAdapter.CardViewViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_cardview_cafe, parent, false);
         return new CardViewViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull CardViewCafeAdapter.CardViewViewHolder holder, int position) {
-        Cafe cafe = listCafe.get(position);
-        Glide.with(holder.itemView.getContext())
-                .load(cafe.getPhoto())
-                .apply(new RequestOptions().override(350, 550))
-                .into(holder.cafePic);
-        holder.cafeName.setText(cafe.getName());
-        holder.cafeRating.setRating(cafe.getRating());
-    }
-
-    @Override
-    public int getItemCount() {
-        return listCafe.size();
     }
 
     public class CardViewViewHolder extends RecyclerView.ViewHolder{

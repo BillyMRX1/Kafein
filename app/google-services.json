@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1004287091563",
+    "firebase_url": "https://kafein-8beb9.firebaseio.com",
+    "project_id": "kafein-8beb9",
+    "storage_bucket": "kafein-8beb9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1004287091563:android:cf219911a3d863732e222e",
+        "android_client_info": {
+          "package_name": "com.putrasamudra.kafein"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1004287091563-civ4p2bgb13l1ehinrd34pr1mcd2faun.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA1IY7DE4FFm5kygJ9vfkvTs5eQZM3JgrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1004287091563-civ4p2bgb13l1ehinrd34pr1mcd2faun.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
