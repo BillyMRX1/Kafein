@@ -12,37 +12,78 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="90dp"
-        android:background="#C4C4C4"
-        android:padding="8dp">
+        android:layout_height="wrap_content"
+        android:background="@color/whitePrimary"
+        android:paddingBottom="16dp">
 
         <ImageView
             android:id="@+id/cafe_pic"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="220dp"
+            android:layout_height="150dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:scaleType="centerCrop"
-            tools:src="@color/whitePrimary" />
+            android:src="@color/colorAccent"/>
 
         <TextView
             android:id="@+id/cafe_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginLeft="16dp"
-            android:text="Cafe A"
-            android:textSize="16sp"
-            android:layout_toEndOf="@id/cafe_pic"/>
+            android:layout_below="@id/cafe_pic"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Caribou Cafe"
+            android:textSize="16sp" />
 
-        <RatingBar
-            android:id="@+id/cafe_rating"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+        <ImageView
+            android:id="@+id/star"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
-            android:max="5"
             android:layout_below="@id/cafe_name"
-            android:layout_toEndOf="@id/cafe_pic"/>
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/ic_star" />
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cafe_name"
+            android:layout_toEndOf="@id/star"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="8dp"
+            android:text="4.5"/>
+
+        <ImageView
+            android:id="@+id/box"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_box"
+            android:layout_toEndOf="@id/rating"
+            android:layout_below="@id/cafe_name"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="16dp"/>
+
+        <TextView
+            android:id="@+id/maxpeople"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Max 10 People"
+            android:layout_toEndOf="@id/box"
+            android:layout_below="@id/cafe_name"
+            android:layout_marginTop="6dp"
+            android:layout_marginStart="16dp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/cafe_pic"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ic_heart" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>

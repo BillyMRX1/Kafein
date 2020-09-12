@@ -23,7 +23,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView rvCafe;
-    private ArrayList<Cafe> list = new ArrayList<>();
     private CardViewCafeAdapter adapter;
     private DatabaseReference mbase;
 
@@ -32,10 +31,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.topAppBar);
-        AppCompatActivity activity = (AppCompatActivity) this;
-        activity.setSupportActionBar(toolbar);
-
         mbase = FirebaseDatabase.getInstance().getReference().child("Cafe");
         rvCafe = findViewById(R.id.rv_cafe);
         rvCafe.setLayoutManager(new LinearLayoutManager(this));
@@ -43,32 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 .setQuery(mbase, Cafe.class).build();
         adapter = new CardViewCafeAdapter(options);
         rvCafe.setAdapter(adapter);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.main_menu, menu);
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        if (searchManager != null) {
-            SearchView searchView = (SearchView) (menu.findItem(R.id.search)).getActionView();
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-            searchView.setQueryHint(getResources().getString(R.string.search_hint));
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    Toast.makeText(MainActivity.this, query, Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    return false;
-                }
-            });
-        }
-
-        return true;
     }
 
     @Override protected void onStart()

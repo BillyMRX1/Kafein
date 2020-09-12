@@ -4,7 +4,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,13 +25,15 @@ public class CardViewCafeAdapter extends FirebaseRecyclerAdapter<Cafe, CardViewC
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull CardViewCafeAdapter.CardViewViewHolder holder, int position, @NonNull Cafe model) {
+    protected void onBindViewHolder(@NonNull CardViewViewHolder holder, int position, @NonNull Cafe model) {
         Glide.with(holder.itemView.getContext())
                 .load(model.getPhoto())
-                .apply(new RequestOptions().override(350, 550))
+                .apply(new RequestOptions())
                 .into(holder.cafePic);
         holder.cafeName.setText(model.getName());
-        holder.cafeRating.setRating(model.getRating());
+        String rating = Float.toString(model.getRating());
+        holder.cafeRating.setText(rating);
+        holder.maxPeople.setText(model.getMaxpeople());
     }
 
     @NonNull
@@ -45,13 +46,15 @@ public class CardViewCafeAdapter extends FirebaseRecyclerAdapter<Cafe, CardViewC
     public class CardViewViewHolder extends RecyclerView.ViewHolder{
         ImageView cafePic;
         TextView cafeName;
-        RatingBar cafeRating;
+        TextView cafeRating;
+        TextView maxPeople;
 
         public CardViewViewHolder(@NonNull View itemView) {
             super(itemView);
             cafePic = itemView.findViewById(R.id.cafe_pic);
             cafeName = itemView.findViewById(R.id.cafe_name);
-            cafeRating = itemView.findViewById(R.id.cafe_rating);
+            cafeRating = itemView.findViewById(R.id.rating);
+            maxPeople = itemView.findViewById(R.id.maxpeople);
         }
     }
 }

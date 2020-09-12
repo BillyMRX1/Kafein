@@ -6,11 +6,17 @@ import android.os.Parcelable;
 public class Cafe implements Parcelable {
     private String name;
     private String photo;
+    private String maxpeople;
     private float rating;
+
+    public Cafe(){
+
+    }
 
     protected Cafe(Parcel in) {
         name = in.readString();
         photo = in.readString();
+        maxpeople = in.readString();
         rating = in.readFloat();
     }
 
@@ -42,6 +48,14 @@ public class Cafe implements Parcelable {
         this.photo = photo;
     }
 
+    public String getMaxpeople() {
+        return maxpeople;
+    }
+
+    public void setMaxpeople(String maxpeople) {
+        this.maxpeople = maxpeople;
+    }
+
     public float getRating() {
         return rating;
     }
@@ -59,6 +73,7 @@ public class Cafe implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(name);
         parcel.writeString(photo);
+        parcel.writeString(maxpeople);
         parcel.writeFloat(rating);
     }
 }
