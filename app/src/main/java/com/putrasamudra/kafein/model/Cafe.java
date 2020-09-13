@@ -11,7 +11,6 @@ public class Cafe implements Parcelable {
     private float rating;
 
     public Cafe(){
-
     }
 
     protected Cafe(Parcel in) {

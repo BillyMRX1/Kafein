@@ -6,5 +6,7 @@
     <color name="whitePrimary">#FFFFFF</color>
     <color name="greyPrimary">#C4C4C4</color>
     <color name="yellowPrimary">#FFD80E</color>
+    <color name="backgroundGrey">#C4C4C4</color>
+    <color name="pinkButton">#F94086</color>
     <color name="blackPrimary">#000000</color>
 </resources>

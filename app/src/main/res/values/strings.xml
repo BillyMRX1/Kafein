@@ -1,6 +1,24 @@
 <resources>
     <string name="app_name">Kafein</string>
     <string name="search_hint">Cari Cafe</string>
+
+    <!--Cart-->
+    <string name="cart">Cart</string>
+    <string name="cart_kursi">Kursi A</string>
+    <string name="cart_kafe">Cafe Bagus Cab A</string>
+    <string name="cart_jam_1">07.00-09.00</string>
+    <string name="cart_jam_2">09.00-11.00</string>
+    <string name="checkout">Proceed to Checkout</string>
+
+    <!--Checkout-->
+    <string name="nama">Nama</string>
+    <string name="no_hp">No Hp</string>
+    <string name="metode_bayar">Metode Bayar</string>
+    <string name="tunai">Tunai</string>
+    <string name="gopay">Gopay</string>
+    <string name="bayar">Bayar</string>
+
+
     <string name="tab_text_1">FAVORITES</string>
     <string name="tab_text_2">RESERVATION</string>
     <!-- TODO: Remove or change this placeholder text -->
