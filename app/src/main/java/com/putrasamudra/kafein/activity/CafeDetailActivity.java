@@ -9,22 +9,47 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.putrasamudra.kafein.R;
+import com.putrasamudra.kafein.model.Cafe;
 
 import java.util.Calendar;
 
 import static java.security.AccessController.getContext;
 
 public class CafeDetailActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
+    public static final String EXTRA_CAFE = "extra_cafe";
     private TextView dateInput;
+    private ImageView thumbnail;
+    private TextView cafeName;
+    private TextView ratingTxt;
+    private RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cafe_detail);
         dateInput = findViewById(R.id.date_input);
+        thumbnail = findViewById(R.id.cafe_thumbnail);
+        cafeName = findViewById(R.id.cafe_name);
+        ratingTxt = findViewById(R.id.rating_text);
+        ratingBar = findViewById(R.id.ratingBar);
+
+        Cafe cafe = this.getIntent().getParcelableExtra(EXTRA_CAFE);
+
+        Glide.with(this)
+                .load(cafe.getPhoto())
+                .apply(new RequestOptions())
+                .into(thumbnail);
+        cafeName.setText(cafe.getName());
+        String rating = String.valueOf(cafe.getRating());
+        ratingTxt.setText(rating);
+        ratingBar.setRating(cafe.getRating());
 
         setDropdown();
         dateInput.setOnClickListener(new View.OnClickListener() {
