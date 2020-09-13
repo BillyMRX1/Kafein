@@ -8,16 +8,26 @@
     <string name="cart_kafe">Cafe Bagus Cab A</string>
     <string name="cart_jam_1">07.00-09.00</string>
     <string name="cart_jam_2">09.00-11.00</string>
-    <string name="checkout">Proceed to Checkout</string>
+    <string name="checkout_btn">Proceed to Checkout</string>
 
     <!--Checkout-->
+    <string name="checkout">Checkout</string>
     <string name="nama">Nama</string>
-    <string name="no_hp">No Hp</string>
+    <string name="no_hp">Nomor Telepon</string>
     <string name="metode_bayar">Metode Bayar</string>
-    <string name="tunai">Tunai</string>
+    <string name="cash">Cash</string>
     <string name="gopay">Gopay</string>
     <string name="bayar">Bayar</string>
+    <string name="pay">Pay</string>
 
+    <!--akun pesanan-->
+    <string name="invoice">Invoice</string>
+    <string name="pesanan_invoice">#367104280</string>
+    <string name="pesanan_kursi">Indoor Lt. 1 Standard Chair</string>
+    <string name="pesanan_cafe">Caribou Cafe · 30 Sept 2020</string>
+    <string name="pesanan_status_bayar">Awaiting Payment</string>
+    <string name="pesanan_metode_bayar">· GoPay</string>
+    <string name="pesanan_harga">Rp. 55.000</string>
 
     <string name="tab_text_1">FAVORITES</string>
     <string name="tab_text_2">RESERVATION</string>

@@ -57,6 +57,7 @@
                     android:layout_marginStart="16dp"
                     android:text="Alfredo Philips"
                     android:textSize="24dp"
+                    android:fontFamily="@font/nunito_sans_regular"
                     android:textColor="@color/blackPrimary"
                     app:layout_constraintStart_toEndOf="@+id/profile_pic"
                     app:layout_constraintTop_toTopOf="@+id/profile_pic" />
@@ -77,6 +78,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="5.5dp"
                     android:text="12"
+                    android:fontFamily="@font/nunito_sans_regular"
                     android:textColor="@color/blackPrimary"
                     app:layout_constraintStart_toEndOf="@+id/imageView5"
                     app:layout_constraintTop_toBottomOf="@+id/username" />
@@ -97,6 +99,7 @@
                     android:layout_marginStart="8dp"
                     android:textColor="@color/blackPrimary"
                     android:text="2"
+                    android:fontFamily="@font/nunito_sans_regular"
                     app:layout_constraintStart_toEndOf="@+id/imageView6"
                     app:layout_constraintTop_toTopOf="@+id/favorite" />
 
@@ -116,12 +119,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tab_text_1"
+                    android:fontFamily="@font/nunito_sans_regular"
                     android:icon="@drawable/ic_heart_filled" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tab_text_2"
+                    android:fontFamily="@font/nunito_sans_regular"
                     android:icon="@drawable/ic_archive" />
 
             </com.google.android.material.tabs.TabLayout>

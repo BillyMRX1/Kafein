@@ -9,4 +9,5 @@
     <color name="backgroundGrey">#C4C4C4</color>
     <color name="pinkButton">#F94086</color>
     <color name="blackPrimary">#000000</color>
+    <color name="greyInvoice">#7B7B7B</color>
 </resources>

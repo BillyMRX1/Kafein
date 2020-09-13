@@ -42,7 +42,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="Caribou Cafe"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:textColor="@color/blackPrimary"
+            android:fontFamily="@font/nunito_sans_regular"/>
 
         <ImageView
             android:id="@+id/star"
@@ -62,7 +64,10 @@
             android:layout_toEndOf="@id/star"
             android:layout_marginTop="6dp"
             android:layout_marginStart="8dp"
-            android:text="4.5"/>
+            android:text="4.5"
+            android:textColor="@color/greyInvoice"
+            android:textSize="12sp"
+            android:fontFamily="@font/nunito_sans_regular"/>
 
         <ImageView
             android:id="@+id/box"
@@ -79,6 +84,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Max 10 People"
+            android:textColor="@color/greyInvoice"
+            android:textSize="12sp"
+            android:fontFamily="@font/nunito_sans_regular"
             android:layout_toEndOf="@id/box"
             android:layout_below="@id/cafe_name"
             android:layout_marginTop="6dp"

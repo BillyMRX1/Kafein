@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_view_akun_pesanan"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    card_view:cardCornerRadius="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/whitePrimary"
+        android:paddingBottom="16dp">
+
+        <!--invoice-->
+        <TextView
+            android:id="@+id/invoice"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nunito_sans_regular"
+            android:text="@string/invoice"
+            android:textColor="@color/greyInvoice"
+            android:textSize="10sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <!--nomer invoice-->
+        <TextView
+            android:id="@+id/akun_pesanan_no_invoice"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:fontFamily="@font/roboto_regular"
+            android:text="@string/pesanan_invoice"
+            android:textColor="@color/greyInvoice"
+            android:textSize="10sp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:paddingTop="2dp"
+            card_view:layout_constraintStart_toEndOf="@+id/invoice"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <!--harga-->
+        <TextView
+            android:id="@+id/akun_pesanan_harga"
+            android:layout_width="wrap_content"
+            android:layout_height="15dp"
+            android:layout_marginStart="240dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="12dp"
+            android:fontFamily="@font/roboto_regular"
+            android:paddingTop="2dp"
+            android:text="@string/pesanan_harga"
+            android:textColor="@color/greyInvoice"
+            android:textSize="10sp"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toEndOf="@+id/akun_pesanan_no_invoice"
+            card_view:layout_constraintTop_toTopOf="parent" />
+
+        <!--kursi-->
+        <TextView
+            android:id="@+id/akun_pesanan_kursi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/nunito_sans_regular"
+            android:text="@string/pesanan_kursi"
+            android:textColor="@color/blackPrimary"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/invoice" />
+
+        <!--resto , tanggal-->
+        <TextView
+            android:id="@+id/akun_pesanan_cafe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/nunito_sans_regular"
+            android:text="@string/pesanan_cafe"
+            android:textColor="@color/greyInvoice"
+            android:textSize="12sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/akun_pesanan_kursi" />
+
+        <!--status pembayaran-->
+        <TextView
+            android:id="@+id/akun_pesanan_status_bayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/nunito_sans_regular"
+            android:text="@string/pesanan_status_bayar"
+            android:textColor="@color/greyInvoice"
+            android:textSize="10sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/akun_pesanan_cafe" />
+
+        <!--metode pembayaran-->
+        <TextView
+            android:id="@+id/akun_pesanan_metode_bayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="4dp"
+            android:fontFamily="@font/nunito_sans_regular"
+            android:text="@string/pesanan_metode_bayar"
+            android:textColor="@color/greyInvoice"
+            android:textSize="10sp"
+            card_view:layout_constraintStart_toEndOf="@+id/akun_pesanan_status_bayar"
+            card_view:layout_constraintTop_toBottomOf="@+id/akun_pesanan_cafe" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

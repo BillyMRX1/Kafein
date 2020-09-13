@@ -34,6 +34,8 @@
             android:layout_marginTop="8dp"
             android:text="Indoor Lt. 1 Standard Chair"
             android:textSize="16sp"
+            android:fontFamily="@font/nunito_sans_regular"
+            android:textColor="@color/blackPrimary"
             card_view:layout_constraintStart_toStartOf="parent"
             card_view:layout_constraintTop_toBottomOf="@+id/cart_pict" />
 
@@ -43,6 +45,8 @@
             android:layout_height="wrap_content"
             android:text="Caribou Cafe · 30/09/2020"
             android:textSize="12sp"
+            android:textColor="@color/greyInvoice"
+            android:fontFamily="@font/nunito_sans_regular"
             card_view:layout_constraintStart_toStartOf="@+id/chair_type"
             card_view:layout_constraintTop_toBottomOf="@+id/chair_type" />
 
