@@ -1,9 +1,15 @@
 package com.putrasamudra.kafein.model;
 
+import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.putrasamudra.kafein.database.DatabaseContract;
+
+import static android.provider.BaseColumns._ID;
+
 public class Cafe implements Parcelable {
+    private int id;
     private String name;
     private String photo;
     private String photo2;
@@ -21,6 +27,7 @@ public class Cafe implements Parcelable {
         maxpeople = in.readString();
         position = in.readString();
         rating = in.readFloat();
+        id = in.readInt();
     }
 
     public static final Creator<Cafe> CREATOR = new Creator<Cafe>() {
@@ -83,6 +90,14 @@ public class Cafe implements Parcelable {
         this.position = position;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -96,5 +111,10 @@ public class Cafe implements Parcelable {
         parcel.writeString(maxpeople);
         parcel.writeString(position);
         parcel.writeFloat(rating);
+        parcel.writeInt(id);
+    }
+
+    public Cafe(Cursor cursor) {
+        this.id = Integer.parseInt(DatabaseContract.getColumnString(cursor,_ID));
     }
 }

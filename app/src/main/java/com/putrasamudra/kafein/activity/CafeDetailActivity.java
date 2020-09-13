@@ -10,6 +10,7 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.transition.AutoTransition;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -23,21 +24,27 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.putrasamudra.kafein.R;
 import com.putrasamudra.kafein.adapter.CardViewCartAdapter;
+import com.putrasamudra.kafein.database.CafeHelper;
 import com.putrasamudra.kafein.model.Cafe;
 import com.putrasamudra.kafein.model.Cart;
 
 import java.util.Calendar;
 
-import static java.security.AccessController.getContext;
 
 public class CafeDetailActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
     public static final String EXTRA_CAFE = "extra_cafe";
     private TextView dateInput;
     private CardViewCartAdapter adapter;
+    private CafeHelper cafeHelper;
+    private Cafe cafe;
+    private FloatingActionButton favBtn;
+    private ExtendedFloatingActionButton reserveBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +55,11 @@ public class CafeDetailActivity extends AppCompatActivity implements DatePickerD
         TextView cafeName = findViewById(R.id.cafe_name);
         TextView ratingTxt = findViewById(R.id.rating_text);
         RatingBar ratingBar = findViewById(R.id.ratingBar);
+        favBtn = findViewById(R.id.floatingActionButton);
+        reserveBtn = findViewById(R.id.extended_fab);
+        cafeHelper = CafeHelper.getInstance(this);
 
-        Cafe cafe = this.getIntent().getParcelableExtra(EXTRA_CAFE);
+        cafe = this.getIntent().getParcelableExtra(EXTRA_CAFE);
 
         Glide.with(this)
                 .load(cafe.getPhoto())
@@ -60,6 +70,7 @@ public class CafeDetailActivity extends AppCompatActivity implements DatePickerD
         ratingTxt.setText(rating);
         ratingBar.setRating(cafe.getRating());
         String position = cafe.getPosition();
+        Log.d("POSISI", position);
 
         setDropdown();
         dateInput.setOnClickListener(new View.OnClickListener() {
@@ -76,10 +87,32 @@ public class CafeDetailActivity extends AppCompatActivity implements DatePickerD
                 .setQuery(mbase, Cart.class).build();
         adapter = new CardViewCartAdapter(options);
         rvTypeSeat.setAdapter(adapter);
+
+        favBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cafeHelper.open();
+                if (!cafeHelper.isExist(cafe.getId())) {
+                    favBtn.setImageResource(R.drawable.ic_heart_filled);
+                    addToFavorite();
+                } else {
+                    favBtn.setImageResource(R.drawable.ic_heart);
+                    removeFromFavorite();
+                }
+                cafeHelper.close();
+            }
+        });
+
+        reserveBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(CafeDetailActivity.this, "Seat Reserved", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setDropdown(){
-        String[] SEAT = new String[] {"1 - 3  People", "Item 2", "Item 3", "Item 4"};
+        String[] SEAT = new String[] {"1 - 3  People", "1 - 5  People", "1 - 10  People", "1 - 20  People"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(CafeDetailActivity.this, R.layout.dropdown_menu_popup_item, SEAT);
 
@@ -125,5 +158,22 @@ public class CafeDetailActivity extends AppCompatActivity implements DatePickerD
     {
         super.onStop();
         adapter.stopListening();
+    }
+
+    private void addToFavorite() {
+        long result = cafeHelper.insert(cafe);
+        if (result > 0)
+            Toast.makeText(this, "Add To Favorite", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "Add To Favorite", Toast.LENGTH_SHORT).show();
+    }
+
+    private void removeFromFavorite() {
+        int result = cafeHelper.delete(cafe.getId());
+        if (result > 0) {
+            Toast.makeText(this, "Remove From Favorite", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Failed To Remove From Favorite", Toast.LENGTH_SHORT).show();
+        }
     }
 }

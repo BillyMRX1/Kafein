@@ -20,6 +20,7 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.putrasamudra.kafein.activity.AccountActivity;
+import com.putrasamudra.kafein.activity.CartActivity;
 import com.putrasamudra.kafein.adapter.CardViewCafeAdapter;
 import com.putrasamudra.kafein.model.Cafe;
 
@@ -30,18 +31,28 @@ public class MainActivity extends AppCompatActivity {
     private CardViewCafeAdapter adapter;
     private DatabaseReference mbase;
     private ImageButton account;
+    private ImageButton cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         account = findViewById(R.id.account);
+        cart = findViewById(R.id.imageButton);
 
         account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent goAccount = new Intent(MainActivity.this, AccountActivity.class);
                 startActivity(goAccount);
+            }
+        });
+
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goCart = new Intent(MainActivity.this, CartActivity.class);
+                startActivity(goCart);
             }
         });
 

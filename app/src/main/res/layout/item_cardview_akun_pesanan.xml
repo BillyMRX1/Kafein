@@ -60,7 +60,6 @@
             android:textColor="@color/greyInvoice"
             android:textSize="10sp"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/akun_pesanan_no_invoice"
             card_view:layout_constraintTop_toTopOf="parent" />
 
         <!--kursi-->
