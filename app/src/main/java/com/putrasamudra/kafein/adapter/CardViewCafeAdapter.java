@@ -53,6 +53,7 @@ public class CardViewCafeAdapter extends FirebaseRecyclerAdapter<Cafe, CardViewC
                 cafe.setPhoto2(model.getPhoto2());
                 cafe.setRating(model.getRating());
                 cafe.setMaxpeople(model.getMaxpeople());
+                cafe.setPosition(model.getPosition());
                 Intent cafeDetail = new Intent(context, CafeDetailActivity.class);
                 cafeDetail.putExtra(CafeDetailActivity.EXTRA_CAFE, cafe);
                 context.startActivity(cafeDetail);

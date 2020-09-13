@@ -8,6 +8,7 @@ public class Cafe implements Parcelable {
     private String photo;
     private String photo2;
     private String maxpeople;
+    private String position;
     private float rating;
 
     public Cafe(){
@@ -18,6 +19,7 @@ public class Cafe implements Parcelable {
         photo = in.readString();
         photo2 = in.readString();
         maxpeople = in.readString();
+        position = in.readString();
         rating = in.readFloat();
     }
 
@@ -73,6 +75,14 @@ public class Cafe implements Parcelable {
         this.rating = rating;
     }
 
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -84,6 +94,7 @@ public class Cafe implements Parcelable {
         parcel.writeString(photo);
         parcel.writeString(photo2);
         parcel.writeString(maxpeople);
+        parcel.writeString(position);
         parcel.writeFloat(rating);
     }
 }

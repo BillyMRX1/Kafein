@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,9 +10,10 @@
     android:layout_marginBottom="8dp"
     card_view:cardCornerRadius="4dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
         android:background="@color/whitePrimary">
 
         <ImageView
@@ -22,34 +21,161 @@
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/dummy_detail"/>
-
-
-    <net.cachapa.expandablelayout.ExpandableLayout
-        android:id="@+id/expandableLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="150dp"
-        app:ael_expanded="false"
-        app:ael_duration="500"
-        app:ael_interpolator="bounce"
-        app:ael_orientation="vertical">
+            android:src="@drawable/dummy_detail"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text"
-            android:layout_width="match_parent"
+            android:id="@+id/chair_type"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sample" />
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="Indoor Lt. 1 Standard Chair"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/cart_pict" />
+
         <TextView
+            android:id="@+id/date_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Caribou Cafe · 30/09/2020"
+            android:textSize="12sp"
+            card_view:layout_constraintStart_toStartOf="@+id/chair_type"
+            card_view:layout_constraintTop_toBottomOf="@+id/chair_type" />
+
+        <ImageButton
+            android:id="@+id/arrow_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/ic_arrow_down"
+            card_view:layout_constraintBottom_toTopOf="@+id/expandable_view"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/cart_pict" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/expandable_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text"
-            android:text="sample2" />
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/date_location">
 
-    </net.cachapa.expandablelayout.ExpandableLayout>
-    </RelativeLayout>
+            <Button
+                android:id="@+id/btn_add_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/whitePrimary"
+                android:text="09 AM - 10 AM"
+                android:textColor="@color/blackPrimary"
+                app:icon="@drawable/ic_plus"
+                app:iconTint="#BDBDBD"
+                card_view:layout_constraintStart_toStartOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/btn_add_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/whitePrimary"
+                android:text="10 AM - 11 AM"
+                android:textColor="@color/blackPrimary"
+                app:icon="@drawable/ic_plus"
+                app:iconTint="#BDBDBD"
+                card_view:layout_constraintEnd_toEndOf="parent"
+                card_view:layout_constraintTop_toTopOf="parent" />
 
+            <Button
+                android:id="@+id/btn_add_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/whitePrimary"
+                android:text="11 AM - 12 PM"
+                android:textColor="@color/blackPrimary"
+                app:icon="@drawable/ic_plus"
+                app:iconTint="#BDBDBD"
+                card_view:layout_constraintStart_toStartOf="@+id/btn_add_1"
+                card_view:layout_constraintTop_toBottomOf="@+id/btn_add_1" />
 
+            <Button
+                android:id="@+id/btn_add_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:backgroundTint="@color/whitePrimary"
+                android:text="12 PM - 01 PM"
+                android:textColor="@color/blackPrimary"
+                app:icon="@drawable/ic_plus"
+                app:iconTint="#BDBDBD"
+                card_view:layout_constraintEnd_toEndOf="@+id/btn_add_2"
+                card_view:layout_constraintTop_toBottomOf="@+id/btn_add_2" />
+
+            <Button
+                android:id="@+id/btn_add_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/whitePrimary"
+                android:layout_marginTop="8dp"
+                android:text="01 PM - 02 PM"
+                android:textColor="@color/blackPrimary"
+                app:icon="@drawable/ic_plus"
+                app:iconTint="#BDBDBD"
+                card_view:layout_constraintStart_toStartOf="@+id/btn_add_3"
+                card_view:layout_constraintTop_toBottomOf="@+id/btn_add_3" />
+
+            <Button
+                android:id="@+id/btn_add_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/whitePrimary"
+                android:layout_marginTop="8dp"
+                android:text="02 PM - 03 PM"
+                android:textColor="@color/blackPrimary"
+                app:icon="@drawable/ic_plus"
+                app:iconTint="#BDBDBD"
+                card_view:layout_constraintEnd_toEndOf="@+id/btn_add_4"
+                card_view:layout_constraintTop_toBottomOf="@+id/btn_add_4" />
+
+            <Button
+                android:id="@+id/btn_add_7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/whitePrimary"
+                android:text="04 PM - 05 PM"
+                android:textColor="@color/blackPrimary"
+                app:icon="@drawable/ic_plus"
+                app:iconTint="#BDBDBD"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintStart_toStartOf="@+id/btn_add_5"
+                card_view:layout_constraintTop_toBottomOf="@+id/btn_add_5" />
+
+            <Button
+                android:id="@+id/btn_add_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="@color/whitePrimary"
+                android:text="05 PM - 06 PM"
+                android:textColor="@color/blackPrimary"
+                app:icon="@drawable/ic_plus"
+                app:iconTint="#BDBDBD"
+                card_view:layout_constraintBottom_toBottomOf="parent"
+                card_view:layout_constraintEnd_toEndOf="@+id/btn_add_6"
+                card_view:layout_constraintTop_toBottomOf="@+id/btn_add_6" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

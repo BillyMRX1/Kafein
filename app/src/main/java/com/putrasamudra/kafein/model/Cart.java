@@ -4,19 +4,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Cart implements Parcelable {
-    private String chair;
-    private String cafe;
-    private int date;
-    private int time;
+    private String name;
+    private String type;
 
     public Cart(){
     }
 
-    protected Cart(Parcel in){
-        chair = in.readString();
-        cafe = in.readString();
-        date = in.readInt();
-        time = in.readInt();
+    protected Cart(Parcel in) {
+        name = in.readString();
+        type = in.readString();
     }
 
     public static final Creator<Cart> CREATOR = new Creator<Cart>() {
@@ -31,31 +27,30 @@ public class Cart implements Parcelable {
         }
     };
 
-    public String getChair() { return chair; }
+    public String getName() {
+        return name;
+    }
 
-    public void setChair(String chair) { this.chair = chair; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getCafe() { return cafe; }
+    public String getType() {
+        return type;
+    }
 
-    public void setCafe(String cafe) { this.cafe = cafe; }
-
-    public int getDate() { return date; }
-
-    public void setDate(int date) { this.date = date; }
-
-    public int getTime() { return time; }
-
-    public void setTime(int time) { this.time = time; }
-
+    public void setType(String type) {
+        this.type = type;
+    }
 
     @Override
-    public int describeContents() { return 0; }
+    public int describeContents() {
+        return 0;
+    }
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(chair);
-        parcel.writeString(cafe);
-        parcel.writeInt(date);
-        parcel.writeInt(time);
+        parcel.writeString(name);
+        parcel.writeString(type);
     }
 }
