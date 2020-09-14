@@ -53,12 +53,18 @@ public class CardViewCafeAdapter extends FirebaseRecyclerAdapter<Cafe, CardViewC
                 cafe.setPhoto2(model.getPhoto2());
                 cafe.setRating(model.getRating());
                 cafe.setMaxpeople(model.getMaxpeople());
+                cafe.setFavorite(model.isFavorite());
                 cafe.setPosition(model.getPosition());
                 Intent cafeDetail = new Intent(context, CafeDetailActivity.class);
                 cafeDetail.putExtra(CafeDetailActivity.EXTRA_CAFE, cafe);
                 context.startActivity(cafeDetail);
             }
         });
+        if (model.isFavorite()){
+            holder.favorite.setImageResource(R.drawable.ic_heart_filled);
+        }else{
+            holder.favorite.setImageResource(R.drawable.ic_heart);
+        }
     }
 
     @NonNull
@@ -74,6 +80,7 @@ public class CardViewCafeAdapter extends FirebaseRecyclerAdapter<Cafe, CardViewC
         TextView cafeName;
         TextView cafeRating;
         TextView maxPeople;
+        ImageView favorite;
 
         public CardViewViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -82,6 +89,7 @@ public class CardViewCafeAdapter extends FirebaseRecyclerAdapter<Cafe, CardViewC
             cafeName = itemView.findViewById(R.id.cafe_name);
             cafeRating = itemView.findViewById(R.id.rating);
             maxPeople = itemView.findViewById(R.id.maxpeople);
+            favorite = itemView.findViewById(R.id.favorite);
         }
     }
 }

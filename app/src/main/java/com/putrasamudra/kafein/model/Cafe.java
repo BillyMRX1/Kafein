@@ -3,9 +3,6 @@ package com.putrasamudra.kafein.model;
 import android.database.Cursor;
 import android.os.Parcel;
 import android.os.Parcelable;
-
-import com.putrasamudra.kafein.database.DatabaseContract;
-
 import static android.provider.BaseColumns._ID;
 
 public class Cafe implements Parcelable {
@@ -15,6 +12,7 @@ public class Cafe implements Parcelable {
     private String photo2;
     private String maxpeople;
     private String position;
+    private boolean favorite;
     private float rating;
 
     public Cafe(){
@@ -26,6 +24,7 @@ public class Cafe implements Parcelable {
         photo2 = in.readString();
         maxpeople = in.readString();
         position = in.readString();
+        favorite = in.readBoolean();
         rating = in.readFloat();
         id = in.readInt();
     }
@@ -82,6 +81,14 @@ public class Cafe implements Parcelable {
         this.rating = rating;
     }
 
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
     public String getPosition() {
         return position;
     }
@@ -110,11 +117,8 @@ public class Cafe implements Parcelable {
         parcel.writeString(photo2);
         parcel.writeString(maxpeople);
         parcel.writeString(position);
+        parcel.writeBoolean(favorite);
         parcel.writeFloat(rating);
         parcel.writeInt(id);
-    }
-
-    public Cafe(Cursor cursor) {
-        this.id = Integer.parseInt(DatabaseContract.getColumnString(cursor,_ID));
     }
 }

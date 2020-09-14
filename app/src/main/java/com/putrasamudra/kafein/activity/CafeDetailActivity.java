@@ -30,7 +30,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.putrasamudra.kafein.R;
 import com.putrasamudra.kafein.adapter.CardViewCartAdapter;
-import com.putrasamudra.kafein.database.CafeHelper;
 import com.putrasamudra.kafein.model.Cafe;
 import com.putrasamudra.kafein.model.Cart;
 
@@ -41,10 +40,10 @@ public class CafeDetailActivity extends AppCompatActivity implements DatePickerD
     public static final String EXTRA_CAFE = "extra_cafe";
     private TextView dateInput;
     private CardViewCartAdapter adapter;
-    private CafeHelper cafeHelper;
-    private Cafe cafe;
     private FloatingActionButton favBtn;
-    private ExtendedFloatingActionButton reserveBtn;
+    private String position;
+    private DatabaseReference favbase;
+    private boolean fav;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +55,9 @@ public class CafeDetailActivity extends AppCompatActivity implements DatePickerD
         TextView ratingTxt = findViewById(R.id.rating_text);
         RatingBar ratingBar = findViewById(R.id.ratingBar);
         favBtn = findViewById(R.id.floatingActionButton);
-        reserveBtn = findViewById(R.id.extended_fab);
-        cafeHelper = CafeHelper.getInstance(this);
+        ExtendedFloatingActionButton reserveBtn = findViewById(R.id.extended_fab);
 
-        cafe = this.getIntent().getParcelableExtra(EXTRA_CAFE);
+        Cafe cafe = this.getIntent().getParcelableExtra(EXTRA_CAFE);
 
         Glide.with(this)
                 .load(cafe.getPhoto())
@@ -69,7 +67,8 @@ public class CafeDetailActivity extends AppCompatActivity implements DatePickerD
         String rating = String.valueOf(cafe.getRating());
         ratingTxt.setText(rating);
         ratingBar.setRating(cafe.getRating());
-        String position = cafe.getPosition();
+        position = cafe.getPosition();
+        fav = cafe.isFavorite();
         Log.d("POSISI", position);
 
         setDropdown();
@@ -80,6 +79,7 @@ public class CafeDetailActivity extends AppCompatActivity implements DatePickerD
             }
         });
 
+        favbase = FirebaseDatabase.getInstance().getReference();
         DatabaseReference mbase = FirebaseDatabase.getInstance().getReference().child("Cafe").child(position).child("cart");
         RecyclerView rvTypeSeat = findViewById(R.id.rv_cart);
         rvTypeSeat.setLayoutManager(new LinearLayoutManager(this));
@@ -88,18 +88,22 @@ public class CafeDetailActivity extends AppCompatActivity implements DatePickerD
         adapter = new CardViewCartAdapter(options);
         rvTypeSeat.setAdapter(adapter);
 
+        if (fav){
+            favBtn.setImageResource(R.drawable.ic_heart_filled);
+        }else{
+            favBtn.setImageResource(R.drawable.ic_heart);
+        }
+
         favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cafeHelper.open();
-                if (!cafeHelper.isExist(cafe.getId())) {
-                    favBtn.setImageResource(R.drawable.ic_heart_filled);
-                    addToFavorite();
-                } else {
+                if (fav) {
                     favBtn.setImageResource(R.drawable.ic_heart);
                     removeFromFavorite();
+                } else {
+                    favBtn.setImageResource(R.drawable.ic_heart_filled);
+                    addToFavorite();
                 }
-                cafeHelper.close();
             }
         });
 
@@ -161,16 +165,18 @@ public class CafeDetailActivity extends AppCompatActivity implements DatePickerD
     }
 
     private void addToFavorite() {
-        long result = cafeHelper.insert(cafe);
-        if (result > 0)
+        favbase.child("Cafe").child(position).child("favorite").setValue(true);
+        fav = true;
+        if (fav)
             Toast.makeText(this, "Add To Favorite", Toast.LENGTH_SHORT).show();
         else
-            Toast.makeText(this, "Add To Favorite", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Fail To Add To Favorite", Toast.LENGTH_SHORT).show();
     }
 
     private void removeFromFavorite() {
-        int result = cafeHelper.delete(cafe.getId());
-        if (result > 0) {
+        favbase.child("Cafe").child(position).child("favorite").setValue(false);
+        fav = false;
+        if (!fav) {
             Toast.makeText(this, "Remove From Favorite", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Failed To Remove From Favorite", Toast.LENGTH_SHORT).show();
